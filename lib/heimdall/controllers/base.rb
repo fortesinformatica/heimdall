@@ -12,7 +12,7 @@ module Heimdall
 
         def can? user, controller
           controller_path = controller.to_s.underscore
-          Authorization.can?(user.id, controller_path)
+          Access.can?(user.id, controller_path)
         end
     end
   end
