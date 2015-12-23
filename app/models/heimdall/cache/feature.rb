@@ -7,12 +7,12 @@ module Heimdall
 
       def self.by_authorizable authorizable_id
         key = key_cache(authorizable_id)
-        Rails.cache.write(key, hash_features_from_database(authorizable_id)) unless Rails.cache.exist?(key)
+        Rails.cache.write(key, hash_from_database(authorizable_id)) unless Rails.cache.exist?(key)
         Rails.cache.read(key)
       end
 
-      def self.hash_features_from_database authorizable_id
-        features = Feature.by_authorizable(authorizable_id)
+      def self.hash_from_database authorizable_id
+        features = Heimdall::Feature.by_authorizable(authorizable_id)
         features.map {|feature| {namespace: feature.namespace} }
       end
     end

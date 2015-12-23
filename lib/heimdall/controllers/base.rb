@@ -3,6 +3,14 @@ module Heimdall
     module Base
       extend ActiveSupport::Concern
 
+      included do
+        before_filter only: [:destroy] do |controller|
+          if controller.is_a?(Devise::SessionsController) && current_user.present?
+            Rails.cache.delete Cache::Feature.key_cache(current_user.id)
+          end
+        end
+      end
+
       protected
         def authorize_user!
           if current_user.present? && !can?(current_user, self.class)
