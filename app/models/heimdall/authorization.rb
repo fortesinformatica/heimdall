@@ -1,5 +1,11 @@
 module Heimdall
-  class Authorization
+  class Authorization < ActiveRecord::Base
+    belongs_to :authorizable, polymorphic: true
+    belongs_to :role
+
+    scope :by_authorizable, -> (authorizable_id) {
+      where(authorizable_id: authorizable_id)
+    }
     
     def self.can? authorizable_id, controller_path
       cached_features(authorizable_id).select {|feature| controller_path.index("#{feature[:namespace]}/") }.any?
