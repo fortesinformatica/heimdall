@@ -7,11 +7,11 @@ require "heimdall/version"
 Gem::Specification.new do |s|
   s.name        = "heimdall"
   s.version     = Heimdall::VERSION
-  s.authors     = ["Felipe Aquino"]
-  s.email       = ["aquinofb@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Heimdall."
-  s.description = "TODO: Description of Heimdall."
+  s.authors     = ["Equipe NEL"]
+  s.email       = ["desenvolvimento.nel@grupofortes.com.br"]
+  s.homepage    = ""
+  s.summary     = "Summary of Heimdall."
+  s.description = "Description of Heimdall."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
