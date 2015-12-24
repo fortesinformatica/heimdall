@@ -12,15 +12,19 @@ module Heimdall
       end
 
       protected
+        def auth_group_id
+          nil
+        end
+
         def authorize_user!
-          if current_user.present? && !can?(current_user, self.class)
+          if current_user.present? && !can?(current_user, self.class, auth_group_id)
             raise "Sem autorização"
           end
         end
 
-        def can? user, controller
+        def can? user, controller, group_id
           controller_path = controller.to_s.underscore
-          Access.can?(user.id, controller_path)
+          Access.can?(user.id, controller_path, group_id)
         end
     end
   end
