@@ -3,6 +3,9 @@ module Heimdall
     belongs_to :authorizable, polymorphic: true
     belongs_to :role
 
+    validates :role_id, :authorizable_id, presence: true
+    validates :role_id, uniqueness: {scope: [:authorizable_id, :group_id]} 
+
     after_destroy :delete_cache
 
     scope :by_authorizable, -> (authorizable_id) {
