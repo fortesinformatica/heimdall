@@ -18,7 +18,7 @@ module Heimdall
 
         def authorize_user!
           if current_user.present? && !can?(current_user, self.class, auth_group_id)
-            raise "Sem autorização"
+            raise Heimdall::SemAutorizacaoError
           end
         end
 

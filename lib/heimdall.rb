@@ -6,6 +6,8 @@ module Heimdall
     autoload :Base, 'heimdall/controllers/base'
   end
 
+  autoload :SemAutorizacaoError, 'heimdall/exceptions'
+
   ActiveSupport.on_load(:action_controller) do
     self.class_eval do
       include Heimdall::Controllers::Base
