@@ -1,3 +1,3 @@
 module Heimdall
-  class SemAutorizacaoError < StandardError; end
+  class UnauthorizedError < StandardError; end
 end
