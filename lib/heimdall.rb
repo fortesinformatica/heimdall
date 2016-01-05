@@ -7,6 +7,7 @@ module Heimdall
   end
 
   autoload :UnauthorizedError, 'heimdall/exceptions'
+  autoload :CurrentUserNotDefinedError, 'heimdall/exceptions'
 
   ActiveSupport.on_load(:action_controller) do
     self.class_eval do

@@ -17,7 +17,9 @@ module Heimdall
         end
 
         def authorize_user!
-          if current_user.present? && !can?(current_user, self.class, auth_group_id)
+          raise CurrentUserNotDefinedError unless current_user.present?
+
+          if !can?(current_user, self.class, auth_group_id)
             raise Heimdall::UnauthorizedError
           end
         end
