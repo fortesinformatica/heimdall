@@ -19,14 +19,14 @@ module Heimdall
         def authorize_user!
           raise CurrentUserNotDefinedError unless current_user.present?
 
-          if !can?(current_user, self.class, auth_group_id)
+          if !can?(current_user, params[:controller], params[:action], auth_group_id)
             raise Heimdall::UnauthorizedError
           end
         end
 
-        def can? user, controller, group_id
-          controller_path = controller.to_s.underscore
-          Access.can?(user.id, controller_path, group_id)
+        def can? user, controller, action, group_id
+          controller_action = params[:controller]+"#"+params[:action]
+          Access.can?(user.id, controller_action, group_id)
         end
     end
   end
